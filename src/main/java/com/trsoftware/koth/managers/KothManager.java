@@ -20,6 +20,7 @@ public class KothManager {
     }
 
     private Instant eventTimestamp;
+    private Instant endEventTimestamp;
 
     public KothEvent currentKoth = null;
 
@@ -59,18 +60,21 @@ public class KothManager {
         }.runTaskTimer(plugin, 0L, 20L);
     }
 
+    /**
+     * Starts the KOTH event.
+     * Creates the timestamp for the start time, sets the game state, and checks every second for KOTH control.
+     */
     public void startKothEvent() {
-        createEventTimestamp();
+        endEventTimestamp();
         Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', plugin.pmessages.getString("kothStarted")
                 .replaceAll("%time%", String.valueOf(currentKoth.getTimeTillEnd()))));
         GameState.setGameState(GameState.ACTIVE);
         new BukkitRunnable() {
-            int timeTillEnd = currentKoth.getTimeTillStart();
-
+            int timeTillEnd = currentKoth.getTimeTillEnd();
             @Override
             public void run() {
-                if (getTimeUntilEventStarts(timeTillEnd) > 0) {
-
+                if (getTimeUntilEventFinishes(timeTillEnd) > 0) {
+                    // TODO logic for controlling koth
                 } else {
                     // TODO end koth
                     cancel();
@@ -87,11 +91,11 @@ public class KothManager {
     }
 
     /**
-     * Calculates the time remaining (in seconds) until the event starts/ends.
+     * Calculates the time remaining (in seconds) until the event starts.
      *
-     * @param secondsUntilStart The number of seconds from event creation until the event starts/ends.
-     * @return An int representing the time left (in seconds) until the event starts/ends.
-     * If the event has already started/ended, returns 0.
+     * @param secondsUntilStart The number of seconds from event creation until the event starts.
+     * @return An int representing the time left (in seconds) until the event starts.
+     * If the event has already started, returns 0.
      */
     public int getTimeUntilEventStarts(int secondsUntilStart) {
         if (eventTimestamp == null) {
@@ -104,6 +108,34 @@ public class KothManager {
         long secondsLeft = Duration.between(now, eventStartTime).getSeconds();
 
         // If the event has already started, return 0
+        return (int) Math.max(secondsLeft, 0);
+    }
+
+    /**
+     * Creates a timestamp for when the event starts.
+     */
+    public void endEventTimestamp() {
+        endEventTimestamp = Instant.now();
+    }
+
+    /**
+     * Calculates the time remaining (in seconds) until the event finishes.
+     *
+     * @param secondsUntilEnd The number of seconds from event start until the event finishes.
+     * @return An int representing the time left (in seconds) until the event finishes.
+     * If the event has already ended, returns 0.
+     */
+    public int getTimeUntilEventFinishes(int secondsUntilEnd) {
+        if (endEventTimestamp == null) {
+            throw new IllegalStateException("Event timestamp has not been created yet.");
+        }
+
+        Instant now = Instant.now();
+        Instant eventEndTime = endEventTimestamp.plusSeconds(secondsUntilEnd);
+
+        long secondsLeft = Duration.between(now, eventEndTime).getSeconds();
+
+        // If the event has already ended, return 0
         return (int) Math.max(secondsLeft, 0);
     }
 
