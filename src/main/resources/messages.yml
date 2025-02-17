@@ -15,3 +15,6 @@ kothStarted: " \n&7A KOTH event has started. \nIt will end in &b&l%time% &7secon
 
 # Message sent when attempting to schedule a koth but one is either scheduled or active.
 cannotSchedule: "&c&lSorry&7, you cannot schedule a new KOTH right now."
+
+# Message sent when checking for next KOTH but one is active right now
+activeKoth: "&7There is an active KOTH event &bright now&7."

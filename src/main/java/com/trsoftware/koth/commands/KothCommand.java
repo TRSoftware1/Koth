@@ -21,8 +21,11 @@ public class KothCommand implements CommandExecutor {
         if (cmd.getName().equalsIgnoreCase("koth")) {
             switch (args.length) {
                 case 0:
-                    if (plugin.kothManager.currentKoth == null) {
+                    if (GameState.isGameState(GameState.INACTIVE)) {
                         plugin.utils.sendMessage(sender, plugin.pmessages.getString("noScheduledKoth"));
+                        return true;
+                    } else if (GameState.isGameState(GameState.ACTIVE)) {
+                        plugin.utils.sendMessage(sender, plugin.pmessages.getString("activeKoth"));
                         return true;
                     }
                     plugin.utils.sendMessage(sender, plugin.pmessages.getString("kothCountdownBroadcast")
