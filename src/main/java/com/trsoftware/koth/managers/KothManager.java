@@ -74,7 +74,7 @@ public class KothManager {
             @Override
             public void run() {
                 if (getTimeUntilEventFinishes(timeTillEnd) > 0) {
-                    // TODO logic for controlling koth
+                    Bukkit.broadcastMessage("Players in zone: " + plugin.zoneManager.getPlayersInRegion(plugin.getConfig().getString("worldGuardRegion")).size());
                 } else {
                     // TODO end koth
                     cancel();
