@@ -1,3 +1,6 @@
+# This is the world name that the KOTH zone is in
+world: "world"
+
 # Set this to true if you want someone to have complete control for x seconds to win
 # Set this to false if you want the game to last a fixed amount of time, and the
 # player with the most control time wins.

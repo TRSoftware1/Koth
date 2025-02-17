@@ -3,6 +3,7 @@ description: King of the Hill plugin.
 version: ${project.version}
 author: TRSoftware
 main: com.trsoftware.koth.Koth
+depend: [WorldGuard]
 commands:
   koth:
     description: King of the Hill command

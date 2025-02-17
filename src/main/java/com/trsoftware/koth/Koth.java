@@ -2,6 +2,7 @@ package com.trsoftware.koth;
 
 import com.trsoftware.koth.commands.KothCommand;
 import com.trsoftware.koth.managers.KothManager;
+import com.trsoftware.koth.managers.ZoneManager;
 import com.trsoftware.koth.utils.Utils;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -18,6 +19,7 @@ public class Koth extends JavaPlugin {
     public Koth plugin;
     public Utils utils;
     public KothManager kothManager;
+    public ZoneManager zoneManager;
     public KothCommand kothCommand;
 
     @Override
@@ -43,6 +45,7 @@ public class Koth extends JavaPlugin {
         plugin = this;
         utils = new Utils(this);
         kothManager = new KothManager(this);
+        zoneManager = new ZoneManager(this);
         kothCommand = new KothCommand(this);
     }
 
@@ -50,6 +53,7 @@ public class Koth extends JavaPlugin {
         plugin = null;
         utils = null;
         kothManager = null;
+        zoneManager = null;
         kothCommand = null;
     }
 
