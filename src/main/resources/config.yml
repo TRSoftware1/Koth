@@ -1,0 +1,27 @@
+# Set this to true if you want someone to have complete control for x seconds to win
+# Set this to false if you want the game to last a fixed amount of time, and the
+# player with the most control time wins.
+completeControlRequired: false
+
+# This is the total amount of time the KOTH event lasts, in seconds.
+# If "completeControlRequired" field is true and no one has met the control
+# time requirement by the time the game ends, no one wins.
+totalKothTime: 300
+
+# This is the total amount of time the KOTH event lasts, in seconds.
+# This ONLY matters if the "completeControlRequired" field is "true"
+controlKothTime: 120
+
+# Set this to true if you want to enable scheduled KOTH events
+# Set this to false if you want to manually schedule KOTH events
+enableScheduledKoth: false
+
+# This is a list of time in seconds. When a koth event's starting time
+# is x seconds from starting AND on this list, a broadcast will be sent.
+countdownBroadcasts:
+  - 300
+  - 120
+  - 60
+  - 30
+  - 10
+

@@ -1,0 +1,17 @@
+# Message sent when an argument needs to be an integer
+invalidInteger: "&c&l%arg% &7is not a valid integer."
+
+# Message sent when a player tries to use a command without permission
+noPermission: "&c&lSorry&7, you don't have permission for this."
+
+# Message sent when a player checks for next koth but none is scheduled
+noScheduledKoth: "&c&lSorry&7, there is no KOTH scheduled."
+
+# Message broadcast when the time till koth start is on the countdown broadcast list
+kothCountdownBroadcast: " \n&7KOTH event starting in &b&l%time% &7seconds!\n "
+
+# Message broadcast when KOTH event starts
+kothStarted: " \n&7A KOTH event has started. \nIt will end in &b&l%time% &7seconds.\n "
+
+# Message sent when attempting to schedule a koth but one is either scheduled or active.
+cannotSchedule: "&c&lSorry&7, you cannot schedule a new KOTH right now."
