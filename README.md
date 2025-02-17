@@ -1,6 +1,8 @@
 # KOTH
 ### by TRSoftware
 
+
+## Permissions
 ---
 
 | **Permission**      | **Description**                                      |
